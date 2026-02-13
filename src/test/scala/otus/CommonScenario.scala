@@ -25,4 +25,5 @@ class CommonScenario {
       .pause(1,3)
       .exec(Actions.pay)
       .pause(1,3)
+
   }

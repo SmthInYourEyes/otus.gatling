@@ -7,18 +7,18 @@ import io.gatling.http.request.builder.HttpRequestBuilder
 object Actions {
 
   val getMainPage: HttpRequestBuilder = http("getMainPage")
-    .get("http://www.load-test.ru:1080/webtours/")
+    .get("/")
     .check(status is 200)
 
 
   val getUserSession: HttpRequestBuilder = http("getUserSession")
-    .get("cgi-bin/nav.pl")
+    .get("/cgi-bin/nav.pl")
     .queryParam("in", "home")
     .check((css("input[name='userSession']", "value").saveAs("userSession")))
     .check(status is 200)
 
   val login: HttpRequestBuilder = http("login")
-    .post("cgi-bin/login.pl")
+    .post("/cgi-bin/login.pl")
     .formParam("userSession", "#{userSession}")
     .formParam("username", "shustovevg")
     .formParam("password", "qwerty")
@@ -28,11 +28,11 @@ object Actions {
     .check(status is 200)
 
   val getCitiesList: HttpRequestBuilder = http("getCitiesList")
-    .get("cgi-bin/reservations.pl")
+    .get("/cgi-bin/reservations.pl")
     .check(status is 200)
 
   val flight: HttpRequestBuilder = http("flight")
-    .post("cgi-bin/reservations.pl")
+    .post("/cgi-bin/reservations.pl")
     .formParam("advanceDiscount", "0")
     .formParam("depart", "Denver")
     .formParam("departDate", "02/20/2026")
@@ -49,7 +49,7 @@ object Actions {
     .check(status is 200)
 
   val selectflight: HttpRequestBuilder = http("selectflight")
-    .post("cgi-bin/reservations.pl")
+    .post("/cgi-bin/reservations.pl")
     .formParam("outboundFlight", "000;0;02/13/2026")
     .formParam("numPassengers", "1")
     .formParam("advanceDiscount", "0")
@@ -61,7 +61,7 @@ object Actions {
 
 
   val pay: HttpRequestBuilder = http("pay")
-    .post("cgi-bin/reservations.pl")
+    .post("/cgi-bin/reservations.pl")
     .formParam("firstName", "Sydney")
     .formParam("lastName", "Sweeney")
     .formParam("address1", "111")
