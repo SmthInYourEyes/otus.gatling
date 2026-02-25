@@ -15,3 +15,5 @@ It includes:
   demonstrating sufficient Gatling functionality
 * proper source file layout
   * both the `test` and `it` (integration test) configurations are shown
+
+sbt "Gatling/testOnly otus.FStable"
